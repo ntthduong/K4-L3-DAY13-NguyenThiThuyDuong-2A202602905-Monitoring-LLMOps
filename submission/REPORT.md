@@ -8,7 +8,7 @@
 - **MSSV:** 2A202602905
 - **Lớp:** K4-L3B
 - **Repository URL:** https://github.com/ntthduong/K4-L3-DAY13-NguyenThiThuyDuong-2A202602905-Monitoring-LLMOps
-- **Commit SHA cuối:** đối chiếu theo HEAD được nộp trên LMS và GitHub Actions của HEAD đó
+- **Commit SHA đã chạy full CI:** `e97b0724025b908dbed70f646e4233e2c90a47aa`; commit nộp cuối chỉ bổ sung report/evidence CI và được đối chiếu bằng HEAD trên LMS
 - **Challenge ID:** `day13-k4-l3b-monitoring-llmops-v1`
 - **Tên project Langfuse cá nhân:** `day13-k4-l3b-2A202602905`
 
@@ -35,6 +35,7 @@
 | Incident trace | `evidence/14-incident-trace.png` và `evidence/14-incident-trace.txt` |
 | Bonus cost comparison | `evidence/15-cost-before-after.txt` |
 | Pre-submission automation | `evidence/16-pre-submission-check.txt` |
+| CI trên release candidate | `evidence/17-ci-final-sha.png` |
 
 ## 3. Kết quả kỹ thuật
 
