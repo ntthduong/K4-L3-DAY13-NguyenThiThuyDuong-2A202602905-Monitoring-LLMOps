@@ -1,0 +1,30 @@
+Langfuse prompt versions
+========================
+
+{
+  "project": "day13-k4-l3b-2A202602905",
+  "prompt_name": "day13-chat",
+  "states": {
+    "baseline": {
+      "version": 1,
+      "labels": [
+        "baseline",
+        "production"
+      ]
+    },
+    "candidate": {
+      "version": 2,
+      "labels": [
+        "candidate",
+        "latest"
+      ]
+    },
+    "production": {
+      "version": 1,
+      "labels": [
+        "baseline",
+        "production"
+      ]
+    }
+  }
+}

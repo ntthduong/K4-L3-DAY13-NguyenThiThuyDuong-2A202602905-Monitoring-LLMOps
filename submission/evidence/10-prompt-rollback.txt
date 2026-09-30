@@ -1,0 +1,76 @@
+Langfuse prompt promote and rollback
+====================================
+
+{
+  "project": "day13-k4-l3b-2A202602905",
+  "prompt_name": "day13-chat",
+  "baseline_trace": {
+    "trace_id": "b959f8dc2f37d026badad22430322af7",
+    "observation_id": "8a3b841cb076e2f6",
+    "parent_observation_id": null,
+    "name": "lab-agent-run",
+    "type": "AGENT",
+    "start_time": "2026-09-30 17:58:41.530000+00:00",
+    "latency_seconds": 0.172,
+    "model": "",
+    "usage": {},
+    "cost": {},
+    "prompt_name": "",
+    "prompt_version": null,
+    "correlation_id": "req-b5b51ea3",
+    "prompt_label": "baseline",
+    "prompt_source": "langfuse"
+  },
+  "candidate_trace": {
+    "trace_id": "5609145463eb38788da56305532a5919",
+    "observation_id": "19026e51ac415594",
+    "parent_observation_id": null,
+    "name": "lab-agent-run",
+    "type": "AGENT",
+    "start_time": "2026-09-30 17:59:44.016000+00:00",
+    "latency_seconds": 0.155,
+    "model": "",
+    "usage": {},
+    "cost": {},
+    "prompt_name": "",
+    "prompt_version": null,
+    "correlation_id": "req-6e47ab74",
+    "prompt_label": "candidate",
+    "prompt_source": "langfuse"
+  },
+  "promoted_production_trace": {
+    "trace_id": "41c06e7df601e24437d73afe45e69662",
+    "observation_id": "2ceee347a069f804",
+    "parent_observation_id": null,
+    "name": "lab-agent-run",
+    "type": "AGENT",
+    "start_time": "2026-09-30 18:09:12.258000+00:00",
+    "latency_seconds": 0.154,
+    "model": "",
+    "usage": {},
+    "cost": {},
+    "prompt_name": "",
+    "prompt_version": null,
+    "correlation_id": "req-f0b41623",
+    "prompt_label": "production",
+    "prompt_source": "langfuse"
+  },
+  "rolled_back_production_trace": {
+    "trace_id": "1584fe58e6a2c9ad312840bf34fe8e6d",
+    "observation_id": "1da2e504d66632cf",
+    "parent_observation_id": null,
+    "name": "lab-agent-run",
+    "type": "AGENT",
+    "start_time": "2026-09-30 18:13:10.818000+00:00",
+    "latency_seconds": 0.153,
+    "model": "",
+    "usage": {},
+    "cost": {},
+    "prompt_name": "",
+    "prompt_version": null,
+    "correlation_id": "req-97a083f0",
+    "prompt_label": "production",
+    "prompt_source": "langfuse"
+  },
+  "current_production_version": 1
+}

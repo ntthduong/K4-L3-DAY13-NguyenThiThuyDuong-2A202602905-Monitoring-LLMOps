@@ -15,7 +15,12 @@ class WindowsCliEncodingTests(unittest.TestCase):
         environment = dict(os.environ)
         environment["PYTHONIOENCODING"] = "cp1258"
 
-        for script in ("load_test.py", "inject_incident.py"):
+        for script in (
+            "load_test.py",
+            "inject_incident.py",
+            "compare_prompt_cost.py",
+            "pre_submission_check.py",
+        ):
             with self.subTest(script=script):
                 completed = subprocess.run(
                     [sys.executable, str(REPO_ROOT / "scripts" / script), "--help"],

@@ -1,0 +1,69 @@
+Managed prompt trace metadata
+=============================
+
+{
+  "source": "Langfuse Observations API v2",
+  "project": "day13-k4-l3b-2A202602905",
+  "trace_id": "5609145463eb38788da56305532a5919",
+  "observations": [
+    {
+      "trace_id": "5609145463eb38788da56305532a5919",
+      "observation_id": "19026e51ac415594",
+      "parent_observation_id": null,
+      "name": "lab-agent-run",
+      "type": "AGENT",
+      "start_time": "2026-09-30 17:59:44.016000+00:00",
+      "latency_seconds": 0.155,
+      "model": "",
+      "usage": {},
+      "cost": {},
+      "prompt_name": "",
+      "prompt_version": null,
+      "correlation_id": "req-6e47ab74",
+      "prompt_label": "candidate",
+      "prompt_source": "langfuse"
+    },
+    {
+      "trace_id": "5609145463eb38788da56305532a5919",
+      "observation_id": "9c87859087bb969f",
+      "parent_observation_id": "19026e51ac415594",
+      "name": "retrieval",
+      "type": "RETRIEVER",
+      "start_time": "2026-09-30 17:59:44.017000+00:00",
+      "latency_seconds": 0.001,
+      "model": "",
+      "usage": {},
+      "cost": {},
+      "prompt_name": "",
+      "prompt_version": null,
+      "correlation_id": "req-6e47ab74",
+      "prompt_label": null,
+      "prompt_source": null
+    },
+    {
+      "trace_id": "5609145463eb38788da56305532a5919",
+      "observation_id": "a674d9511ecb92dc",
+      "parent_observation_id": "19026e51ac415594",
+      "name": "llm-generation",
+      "type": "GENERATION",
+      "start_time": "2026-09-30 17:59:44.019000+00:00",
+      "latency_seconds": 0.152,
+      "model": "claude-sonnet-4-5",
+      "usage": {
+        "input": 25,
+        "output": 33,
+        "total": 58
+      },
+      "cost": {
+        "input": 7.5e-05,
+        "output": 0.000495,
+        "total": 0.00057
+      },
+      "prompt_name": "day13-chat",
+      "prompt_version": 2,
+      "correlation_id": "req-6e47ab74",
+      "prompt_label": "candidate",
+      "prompt_source": "langfuse"
+    }
+  ]
+}

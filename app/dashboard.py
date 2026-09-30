@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import math
+import os
 from collections import Counter
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -9,7 +10,8 @@ from statistics import mean
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
-LOG_PATH = ROOT / "data" / "logs.jsonl"
+_configured_log_path = Path(os.getenv("LOG_PATH", "data/logs.jsonl"))
+LOG_PATH = _configured_log_path if _configured_log_path.is_absolute() else ROOT / _configured_log_path
 
 
 def load_config() -> dict[str, Any]:
@@ -63,7 +65,10 @@ def aggregate(records: list[dict[str, Any]], time_range_minutes: int = 60) -> di
     input_tokens = [int(r["tokens_in"]) for r in responses if isinstance(r.get("tokens_in"), (int, float))]
     output_tokens = [int(r["tokens_out"]) for r in responses if isinstance(r.get("tokens_out"), (int, float))]
     quality = [float(r["quality_score"]) for r in responses if isinstance(r.get("quality_score"), (int, float))]
-    tool_records = [r for r in responses if r.get("tool_success") is not None]
+    # Retrieval failures are emitted as request_failed, while successful
+    # retrievals are attached to response_sent. Use both event types so the
+    # dashboard does not hide a failing retriever.
+    tool_records = [r for r in records if r.get("tool_success") is not None]
     minutes = max(1, time_range_minutes)
     return {
         "requests": len(requests),

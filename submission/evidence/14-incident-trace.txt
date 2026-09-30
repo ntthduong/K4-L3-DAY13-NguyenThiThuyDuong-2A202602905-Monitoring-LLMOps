@@ -1,0 +1,70 @@
+Incident trace evidence
+=======================
+
+{
+  "source": "Langfuse Observations API v2",
+  "project": "day13-k4-l3b-2A202602905",
+  "correlation_id": "req-5e877d82",
+  "trace_id": "4e470655fe5c0284b1ae86b0d9d25670",
+  "observations": [
+    {
+      "trace_id": "4e470655fe5c0284b1ae86b0d9d25670",
+      "observation_id": "fbf62e32f89c3a5d",
+      "parent_observation_id": null,
+      "name": "lab-agent-run",
+      "type": "AGENT",
+      "start_time": "2026-09-30 18:12:34.789000+00:00",
+      "latency_seconds": 2.66,
+      "model": "",
+      "usage": {},
+      "cost": {},
+      "prompt_name": "",
+      "prompt_version": null,
+      "correlation_id": "req-5e877d82",
+      "prompt_label": "production",
+      "prompt_source": "langfuse"
+    },
+    {
+      "trace_id": "4e470655fe5c0284b1ae86b0d9d25670",
+      "observation_id": "17f81156aa9f5a28",
+      "parent_observation_id": "fbf62e32f89c3a5d",
+      "name": "retrieval",
+      "type": "RETRIEVER",
+      "start_time": "2026-09-30 18:12:34.790000+00:00",
+      "latency_seconds": 2.502,
+      "model": "",
+      "usage": {},
+      "cost": {},
+      "prompt_name": "",
+      "prompt_version": null,
+      "correlation_id": "req-5e877d82",
+      "prompt_label": null,
+      "prompt_source": null
+    },
+    {
+      "trace_id": "4e470655fe5c0284b1ae86b0d9d25670",
+      "observation_id": "357996d92fbd5526",
+      "parent_observation_id": "fbf62e32f89c3a5d",
+      "name": "llm-generation",
+      "type": "GENERATION",
+      "start_time": "2026-09-30 18:12:37.295000+00:00",
+      "latency_seconds": 0.154,
+      "model": "claude-sonnet-4-5",
+      "usage": {
+        "input": 36,
+        "output": 33,
+        "total": 69
+      },
+      "cost": {
+        "input": 0.000108,
+        "output": 0.000495,
+        "total": 0.000603
+      },
+      "prompt_name": "day13-chat",
+      "prompt_version": 1,
+      "correlation_id": "req-5e877d82",
+      "prompt_label": "production",
+      "prompt_source": "langfuse"
+    }
+  ]
+}

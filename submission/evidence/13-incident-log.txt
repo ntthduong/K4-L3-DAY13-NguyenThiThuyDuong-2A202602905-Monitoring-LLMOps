@@ -1,0 +1,18 @@
+Incident structured log evidence
+================================
+
+{
+  "ts": "2026-09-30T18:12:37.449640Z",
+  "event": "response_sent",
+  "correlation_id": "req-5e877d82",
+  "feature": "monitoring",
+  "model": "claude-sonnet-4-5",
+  "latency_ms": 2659,
+  "ttft_ms": 52,
+  "tokens_in": 36,
+  "tokens_out": 33,
+  "cost_usd": 0.000603,
+  "quality_score": 0.9,
+  "tool_name": "retrieval",
+  "tool_success": true
+}

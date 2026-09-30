@@ -1,0 +1,22 @@
+Prompt cost comparison (same workload)
+
+metric | baseline | candidate | change
+--- | ---: | ---: | ---:
+requests | 100 | 100 | +0.00%
+error_rate_pct | 0.00 | 0.00 | +0.00%
+avg_tokens_in | 33.80 | 31.60 | -6.51%
+avg_tokens_out | 33.00 | 33.00 | +0.00%
+input_cost_usd | 0.010140 | 0.009480 | -6.51%
+avg_cost_usd | 0.000596 | 0.000590 | -1.11%
+total_cost_usd | 0.059640 | 0.058980 | -1.11%
+latency_p95_ms | 162.00 | 160.00 | -1.23%
+quality_avg | 0.880 | 0.880 | +0.00%
+
+PASS: same request count
+PASS: candidate input tokens decreased
+PASS: candidate input cost decreased
+PASS: candidate total average cost decreased
+PASS: quality stayed within 0.02
+PASS: error rate did not increase
+
+RESULT: PASS

@@ -1,0 +1,18 @@
+Incident metric evidence
+========================
+
+{
+  "source": "data\\challenge-runtime.jsonl",
+  "challenge_id": "day13-k4-l3b-monitoring-llmops-v1",
+  "incident": "rag_slow",
+  "window_start_utc": "2026-09-30T18:11:55.137409Z",
+  "window_end_utc": "2026-09-30T18:13:01.319187Z",
+  "requests": 15,
+  "latency_p50_ms": 2655.0,
+  "latency_p95_ms": 2659.0,
+  "latency_p99_ms": 2659.0,
+  "ttft_p95_ms": 53.0,
+  "error_rate_pct": 0.0,
+  "retrieval_success_pct": 100.0,
+  "slo_latency_threshold_ms": 2000
+}
