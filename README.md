@@ -190,6 +190,8 @@ day13-agent-request
 
 Không capture raw prompt/output chứa PII vì người dùng có thể nhập email, số điện thoại, CCCD hoặc nội dung nhạy cảm. Chỉ lưu preview đã scrub và metadata an toàn. Correlation ID phải xuất hiện trong trace metadata để nối trace với log.
 
+Dashboard local đọc `data/logs.jsonl` và có thể chạy bằng `streamlit run app/dashboard.py`; dashboard gồm sáu panel theo `config/dashboard.yaml`. Hoàn thiện alert/runbook trong `config/alert_rules.yaml` và `docs/alerts.md`. Contract được kiểm tra bằng `python scripts/validate_dashboard.py`, nhưng vẫn cần evidence ảnh dashboard runtime.
+
 Dashboard dùng `data/logs.jsonl` làm nguồn chuẩn và giữ đúng 6 panel trong `config/dashboard.yaml`. Panel latency phải có P50/P95/P99 và TTFT; panel errors phải thể hiện cả retrieval success. Sau đó hoàn thiện:
 
 - `config/slo.yaml`: giải thích hoặc điều chỉnh SLO, tính error budget;

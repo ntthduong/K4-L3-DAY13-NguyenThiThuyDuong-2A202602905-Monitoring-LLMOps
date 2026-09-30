@@ -18,10 +18,11 @@
 
 | Evidence | Đường dẫn |
 |---|---|
-| Pytest cuối | `evidence/01-pytest.png` |
-| Log validator | `evidence/02-log-validator.png` |
+| Pytest cuối | Chưa chụp — kết quả CP1: 26 passed |
+| Log validator | Chưa chụp — kết quả CP1: 100/100 |
 | Dashboard validator | `evidence/03-dashboard-validator.png` |
 | Structured log | `evidence/04-structured-log.png` |
+| Correlation ID response header | `evidence/04b-correlation-header.png` |
 | PII redaction | `evidence/05-pii-redaction.png` |
 | Trace list | `evidence/06-trace-list.png` |
 | Trace waterfall | `evidence/07-trace-waterfall.png` |
@@ -37,7 +38,7 @@
 
 | Nội dung | Baseline | Kết quả cuối | Nhận xét |
 |---|---|---|---|
-| `validate_logs.py` | | | |
+| `validate_logs.py` | 30/100 | CP1: 100/100 | 10 correlation ID; 0 thiếu field/enrichment; 0 PII leak |
 | `validate_dashboard.py` | | | |
 | `pytest` | | | |
 | Số traces hợp lệ | | | |
@@ -47,16 +48,16 @@
 
 ## 4. Logging và PII
 
-- **Cách tạo/nhận và truyền correlation ID:**
-- **Các metadata được ghi vào structured log:**
-- **Cách bảo đảm PII được scrub trước khi ghi:**
-- **Cách kiểm chứng kết quả:**
+- **Cách tạo/nhận và truyền correlation ID:** Middleware xóa context cũ, chỉ chấp nhận `x-request-id` theo dạng `req-<8 hex>`; nếu thiếu/sai định dạng thì tạo ID mới. ID được bind vào structlog, truyền vào agent/trace, trả trong body và header `x-request-id`; header `x-response-time-ms` ghi thời gian xử lý.
+- **Các metadata được ghi vào structured log:** `user_id_hash` (SHA-256 rút gọn, không ghi user ID thô), `session_id`, `feature`, `model`, `env`; các event API cùng request dùng chung metadata và `correlation_id`.
+- **Cách bảo đảm PII được scrub trước khi ghi:** `scrub_event` chạy trước JSONL file writer và JSON renderer; scrubber đệ quy các string trong cấu trúc log. Pattern xử lý email, điện thoại Việt Nam, CCCD 12 số và thẻ thanh toán 16 số.
+- **Cách kiểm chứng kết quả:** Baseline validator CP0 là 30/100, được lưu tại `../data/logs.baseline-cp0.jsonl`. Sau khi triển khai, `python scripts/load_test.py` tạo 10 request mới và `python scripts/validate_logs.py` đạt **100/100**: 21 records (gồm `app_started`), 0 record thiếu field bắt buộc, 0 record thiếu enrichment, 10 correlation ID duy nhất, 0 PII leak. `python -m pytest -q`: **26 passed**. Log runtime hiện tại: `../data/logs.jsonl`.
 
 ## 5. Tracing và prompt versioning
 
-- **Cách xác nhận traces do chính tôi tạo trong project cá nhân:**
-- **Cấu trúc root/retrieval/generation observations:**
-- **Cách nối trace với log:**
+- **Cách xác nhận traces do chính tôi tạo trong project cá nhân:** Chưa thực hiện; cần chạy workload sau khi cấu hình project Langfuse cá nhân.
+- **Cấu trúc root/retrieval/generation observations:** Root `lab-agent-run` chứa child `retrieval` (retriever) và `llm-generation` (generation); generation ghi model, prompt preview đã scrub, token usage và cost.
+- **Cách nối trace với log:** `correlation_id` được truyền qua context trace metadata; cùng ID được ghi ở structured log và response.
 - **Prompt name:**
 - **Version/label baseline:**
 - **Version/label candidate:**
@@ -65,10 +66,10 @@
 
 ## 6. Dashboard, SLO và alerts
 
-- **Dashboard và sáu panel:**
-- **SLO và lý do chọn:**
-- **Cách tính error budget:**
-- **Ba alert và runbook tương ứng:**
+- **Dashboard và sáu panel:** Dashboard runtime Streamlit tại `app/dashboard.py`, nguồn `data/logs.jsonl`; có latency/TTFT, traffic, errors/retrieval success, cost, tokens và quality. Cần chụp ảnh runtime sau khi chạy.
+- **SLO và lý do chọn:** 99.5% request thành công trong 28 ngày với latency ≤ 3000ms, theo `config/slo.yaml`; threshold cần được đối chiếu với baseline workload cá nhân.
+- **Cách tính error budget:** 100% - 99.5% = 0.5%; trên 10.000 request cho phép tối đa 50 request không đạt SLO.
+- **Ba alert và runbook tương ứng:** `HighLatencyP95`, `ElevatedErrorRate`, `LowRetrievalSuccess`; có duration, severity, owner, Slack channel và hướng dẫn điều tra/mitigation trong `config/alert_rules.yaml` và `docs/alerts.md`.
 
 > Ví dụ cách viết error budget: "SLO 99.5% trong 28 ngày nghĩa là error budget 0.5%. Nếu workload có 10,000 request thì tối đa 50 request được phép lỗi hoặc chậm hơn ngưỡng SLO."
 
